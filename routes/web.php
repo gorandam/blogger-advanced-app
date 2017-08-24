@@ -11,13 +11,32 @@
 |
 */
 
-Route::get('/', 'PagesControler@home');
-Route::get('/home', 'PagesControler@home');
-Route::get('/about', 'PagesControler@about');
+Route::get('/', [
+  'uses' => 'PagesControler@home',
+  'as' => 'home'
+]);
+
+Route::get('/about', [
+  'uses' => 'PagesControler@about',
+  'as' => 'about'
+]);
+
 //RESTfull controller CRUD
-Route::get('/tickets', 'TicketsController@index');// route to DISPLAY ALL tickets
-Route::get('/contact', 'TicketsController@create');// route to DISPLAY FORM to insert tickets
-Route::post('/contact', 'TicketsController@store');// route to STORE tickets
+Route::get('/tickets', [ // route to DISPLAY ALL tickets
+  'uses' => 'TicketsController@index',
+  'as' => 'tickets.index'
+]);
+
+Route::get('/contact', [ // route to DISPLAY FORM to insert tickets
+  'uses' => 'TicketsController@create',
+  'as' => 'tickets.create'
+]);
+
+Route::post('/contact', [// route to STORE tickets
+  'uses' => 'TicketsController@store',
+  'as' => 'tickets.create'
+]);
+
 Route::get('/ticket/{slug?}', 'TicketsController@show');// route to SHOW specified ticket
 Route::get('/ticket/{slug?}/edit', 'TicketsController@edit');// route to DISPLAY EDIT FORM to update the tickets
 Route::post('/ticket/{slug?}/edit', 'TicketsController@update');// route to UPDATE tickets into the database

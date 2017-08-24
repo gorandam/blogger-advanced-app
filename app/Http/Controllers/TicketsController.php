@@ -17,7 +17,7 @@ class TicketsController extends Controller
     public function index()// method to view all tickets
     {
         $tickets = Ticket::all();// It will return Collection object that contains our model instances
-        return view('tickets.index', compact('tickets'));// here we return view response object and pass array data with it
+        return view('tickets.index', ['tickets' => $tickets]);// here we return view response object and pass array data with it
     }
 
     /**
@@ -50,12 +50,12 @@ class TicketsController extends Controller
       $data = array(
         'ticket' => $slug,
       );
-      Mail::send('emails.ticket', $data, function ($message) {// Here we have three arguments: VIEW for bodytext of mail, $data for data for body, CLOSURE
-        $message->from('goran.dam@gmail.com', 'Laravel Freak');
-        $message->to('goran.dam@gmail.com')->subject('There is a new ticket!');
-      });
+      //Mail::send('emails.ticket', $data, function ($message) {// Here we have three arguments: VIEW for bodytext of mail, $data for data for body, CLOSURE
+        //$message->from('goran.dam@gmail.com', 'Laravel Freak');
+        //$message->to('goran.dam@gmail.com')->subject('There is a new ticket!');
+      //});
 
-      return redirect('/tickets')->with('status', 'Your ticket has been created! Its unique id is: '.$slug);// redirect() is global helper for create redirect response instance
+      return redirect()->route('tickets.create')->with('status', 'Your ticket has been created! Its unique id is: '.$slug);// redirect() is global helper for create redirect response instance
 
     }
 

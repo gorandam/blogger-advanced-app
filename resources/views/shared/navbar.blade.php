@@ -8,15 +8,16 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Laravel Freak</a>
+          <a class="navbar-brand" href="{{ route('home') }}">Laravel Freak</a>
       </div>
 
       <!-- Navbar Right -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="/">Home</a></li>
-              <li><a href="/about">About</a></li>
-              <li><a href="/contact">Contact</a></li>
+              <li class="active"><a href="{{ route('home') }}">Home</a></li>
+              <li><a href="{{ route('about') }}">About</a></li>
+              <li><a href="{{ route('tickets.create') }}">Contact</a></li>
+              <li><a href="{{ route('tickets.index') }}">Tickets</a></li>
               <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Member
                   <span class="caret"></span></a>
