@@ -40,20 +40,20 @@ class TicketsController extends Controller
     {
       $slug = uniqid();//PHP built-in function genereate unique ID based on current miliseconds
       $ticket = new Ticket(array(
-          'title' => $request->get('title'), // get() returns item at the given key as argument
-          'content' => $request->get('content'),
+          'title' => $request->input('title'), // get() returns item at the given key as argument
+          'content' => $request->input('content'),
           'slug' => $slug
       ));
 
       $ticket->save();
 
-      $data = array(
-        'ticket' => $slug,
-      );
-      //Mail::send('emails.ticket', $data, function ($message) {// Here we have three arguments: VIEW for bodytext of mail, $data for data for body, CLOSURE
-        //$message->from('goran.dam@gmail.com', 'Laravel Freak');
-        //$message->to('goran.dam@gmail.com')->subject('There is a new ticket!');
-      //});
+      //$data = array(
+        //'ticket' => $slug,
+      //);
+      Mail::send('emails.ticket', ['id' => $slug], function ($message) {// Here we have three arguments: VIEW for bodytext of mail, data for data for body, CLOSURE
+        $message->from('hello.app@test.com', 'Advanced Blogger');
+        $message->to('goran.dam@mail.com')->subject('There is a new ticket!');
+      });
 
       return redirect()->route('tickets.create')->with('status', 'Your ticket has been created! Its unique id is: '.$slug);// redirect() is global helper for create redirect response instance
 
@@ -67,9 +67,9 @@ class TicketsController extends Controller
      */
     public function show($slug)// method to view specific ticket
     {
-        $ticket = Ticket::whereSlug($slug)->first();// here we staticly call whereSlug and first methods
-        $comments = $ticket->comments()->get();// Here we get firt HasMany relationship instance object and call get() fetch method on it to get collectin object
-        return  view('tickets.show', compact('ticket', 'comments'));// here we create view resonse object and pass as array our instance of Ticket model
+        $ticket = Ticket::whereSlug($slug)->first();// here we staticly call whereSlug and first methods return instance of our Ticket model
+        $comments = $ticket->comments()->get();// Here we get firt HasMany relationship instance object and call get() fetch method on it to get collectin object of our Comment models
+        return  view('tickets.show', ['ticket' => $ticket, 'comments' => $comments]);// here we create view response object and pass as array our instance of Ticket model
     }
 
     /**
@@ -81,7 +81,7 @@ class TicketsController extends Controller
     public function edit($slug)//method to display edit from page
     {
         $ticket = Ticket::whereSlug($slug)->first();
-        return view('tickets.edit', compact('ticket'));
+        return view('tickets.edit', ['ticket' => $ticket]);
     }
 
     /**
@@ -94,15 +94,15 @@ class TicketsController extends Controller
     public function update($slug, TicketFormRequest $request )
     {
         $ticket = Ticket::whereSlug($slug)->first();
-        $ticket->title = $request->get('title');
-        $ticket->content = $request->get('content');
-        if($request->get('status') != null) {
+        $ticket->title = $request->input('title');
+        $ticket->content = $request->input('content');
+        if($request->get('status') != null) {//Here we check if the ticket has statues 0 or 1
           $ticket->status = 0;
         } else {
           $ticket->status = 1;
         }
-        $ticket->save();
-        return redirect(action('TicketsController@index', $ticket->slug))->with('status', 'The ticket '. $slug. 'has been updated!');
+        $ticket->save();//Here we store the ticket in the database
+        return redirect()->route('tickets.edit', $ticket->slug)->with('status', 'The ticket '. $slug. 'has been updated!');
     }
 
     /**
@@ -115,6 +115,6 @@ class TicketsController extends Controller
     {
         $ticket = Ticket::whereSlug($slug)->first();
         $ticket->delete();
-        return redirect('/tickets')->with('status', 'The ticket '.$slug.' has been deleted!');
+        return redirect()->route('tickets.index')->with('status', 'The ticket '.$slug.' has been deleted!');
     }
 }

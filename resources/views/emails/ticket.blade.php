@@ -5,9 +5,9 @@
     <meta charset="utf-8">
   </head>
   <body>
-    <h2>Laravel Freak</h2>
+    <h2>Advanced Blogger</h2>
       <div>
-        You have a new ticket. The ticket id is {!! $ticket !!}!
+        You have a new ticket. The ticket id is {!! $id !!}!
       </div>
 
   </body>

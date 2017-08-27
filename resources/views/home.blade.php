@@ -9,13 +9,13 @@
         <div class="col-md-12">
 
             <h1 class="text-center margin-top-100 editContent">
-                Learning Laravel 5
+                Advanced Blogger with Learning Laravel 5
             </h1>
 
-            <h3 class="text-center margin-top-100 editContent">Building Practical Applications</h3>
+            <h3 class="text-center margin-top-100 editContent">Building Practical Application</h3>
 
             <div class="text-center">
-                <img src="https://learninglaravel.net/img/LearningLaravel5_cover0.png" width="302" height="391" alt="">
+                <img src="http://studioandall.com/wp-content/uploads/2016/11/95189982e4efeba9ea97615a85774f9a.jpg" width="302" height="391" alt="">
             </div>
 
         </div>

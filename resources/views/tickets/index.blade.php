@@ -29,7 +29,7 @@
                                 <tr>
                                     <td>{!! $ticket->id !!} </td>
                                     <td>
-                                      <a href="{!! action('TicketsController@show', $ticket->slug) !!}">{!! $ticket->title !!} </a>
+                                      <a href="{!! route('tickets.show', $ticket->slug) !!}">{!! $ticket->title !!} </a>
                                     </td>
                                     <td>{!! $ticket->status ? 'Pending' : 'Answered' !!}</td>
                                 </tr>

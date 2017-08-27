@@ -6,9 +6,9 @@
     <title></title>
   </head>
   <body>
-    <h2>Laravel Freak!</h2>
+    <h2>Advanced Blogger!</h2>
     <div>
-      <?php echo $name ?>
+      Welcome to my {{ $name }} website!
     </div>
 
   </body>
