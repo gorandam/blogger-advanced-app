@@ -71,7 +71,10 @@ Route::post('/ticket/{slug?}/delete', [ // route to DELETE tickets  into the dat
 */
 
 // We create Routes for CommentsController for handling form submssion and save comments to the database
-Route::post('/comment','CommentsController@newComment');//When we send post request to this route Laravel will execute CoommentsControllers newComment acction
+Route::post('/comment',[ //When we send post request to this route Laravel will execute CoommentsControllers newComment acction
+  'uses' => 'CommentsController@newComment',
+  'as' => 'comment.edit'
+]);
 
 // Here we create routes for registration of our users
 Route::get('users/register', 'Auth\RegisterController@showRegistrationForm');//route to DISPLAY registration form

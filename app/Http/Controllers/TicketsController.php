@@ -67,9 +67,9 @@ class TicketsController extends Controller
      */
     public function show($slug)// method to view specific ticket
     {
-        $ticket = Ticket::whereSlug($slug)->first();// here we staticly call whereSlug and first methods return instance of our Ticket model
-        $comments = $ticket->comments()->get();// Here we get firt HasMany relationship instance object and call get() fetch method on it to get collectin object of our Comment models
-        return  view('tickets.show', ['ticket' => $ticket, 'comments' => $comments]);// here we create view response object and pass as array our instance of Ticket model
+        $ticket = Ticket::whereSlug($slug)->with('comments')->first();// here we staticly call whereSlug and first methods return instance of our Ticket model and we use with() chain mehtod to eager loading.....
+        //$comments = $ticket->comments()->get();// Here we get firt HasMany relationship instance object and call get() fetch method on it to get collectin object of our Comment models - this is alternative way for eager loading
+        return  view('tickets.show', ['ticket' => $ticket]);// here we create view response object and pass as array our instance of Ticket model
     }
 
     /**

@@ -21,7 +21,7 @@
                 <div class="clearfix"></div>
           </div>
 
-          @foreach($comments as $comment)
+          @foreach($ticket->comments as $comment)
             <div class="well well bs-component">
               <div class="content">
                 {!! $comment->content !!}
