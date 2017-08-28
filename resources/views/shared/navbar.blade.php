@@ -23,10 +23,10 @@
                   <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                     @if (Auth::check())
-                    <li><a href="/users/logout">Logout</a></li>
+                    <li><a href="{{ route('auth.logout') }}">Logout</a></li>
                     @else
-                    <li><a href="/users/register">Register</a></li>
-                    <li><a href="/users/login">Login</a></li>
+                    <li><a href="{{ route('auth.register') }}">Register</a></li>
+                    <li><a href="{{ route('auth.login') }}">Login</a></li>
                     @endif
                   </ul>
               </li>

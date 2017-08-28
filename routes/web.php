@@ -77,15 +77,30 @@ Route::post('/comment',[ //When we send post request to this route Laravel will 
 ]);
 
 // Here we create routes for registration of our users
-Route::get('users/register', 'Auth\RegisterController@showRegistrationForm');//route to DISPLAY registration form
-Route::post('users/register', 'Auth\RegisterController@register');//route to process the form
+Route::get('users/register', [ //route to DISPLAY registration form
+  'uses' => 'Auth\RegisterController@showRegistrationForm',
+  'as' => 'auth.register'
+]);
+Route::post('users/register', [ //route to process the form
+  'uses' => 'Auth\RegisterController@register',
+  'as' => 'auth.register'
+]);
 
 //Here is route to logout our user
-Route::get('users/logout', 'Auth\LoginController@logout');//route to logout users
+Route::get('users/logout', [ //route to logout users
+  'uses' => 'Auth\LoginController@logout',
+  'as' => 'auth.logout'
+]);
 
 // Here we create routes for login our users
-Route::get('users/login', 'Auth\LoginController@showLoginForm')->name('login');// route do DISPLAY login form // we specified named route and we use it when redirect via global redirect function
-Route::post('users/login', 'Auth\LoginController@login');// route to process login form
+Route::get('users/login', [ // route do DISPLAY login form // we specified named route and we use it when redirect via global redirect function
+  'uses' => 'Auth\LoginController@showLoginForm',
+  'as' => 'auth.login'
+]);
+Route::post('users/login', [ // route to process login form
+  'uses' => 'Auth\LoginController@login',
+  'as' => 'auth.login'
+]);// route to process login form
 
 //Admin area routes
 Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'manager'), function () {
