@@ -103,6 +103,21 @@ Route::post('users/login', [ // route to process login form
 ]);// route to process login form
 
 //Admin area routes
-Route::group(array('prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'manager'), function () {
-  Route::get('users', 'UsersController@index');
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+  Route::get('users', [// Route to list all users
+    'uses' => 'UsersController@index',
+    'as' => 'backend.users.index'
+  ]);
+  Route::get('roles', [ //Route to list all roles
+    'uses' => 'RolesController@index',
+    'as' => 'backend.roles.index'
+  ]);
+  Route::get('roles/create', [ //Route to create view to store roles
+    'uses' => 'RolesController@create',
+    'as' => 'backend.roles.create'
+  ]);
+  Route::post('roles/create', [ //Route to store roles to the database;
+    'uses' => 'RolesController@store',
+    'as' => 'backend.roles.store'
+  ]);
 });

@@ -10,7 +10,7 @@ class UsersController extends Controller
 {
     public function index() {
       $users = User::all(); //It will return Collection object that contains our  User model instances
-      return view('backend.users.index', compact('users'));//Here we return view response object and pass array data with it(['users' => $users])
+      return view('backend.users.index', ['users' => $users]);//Here we return view response object and pass array data with it(['users' => $users])
 
     }
 }

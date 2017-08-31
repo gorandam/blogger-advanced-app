@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "fd196198b18bec5cdcb08c180d6f2d19",
+    "content-hash": "472408d07660c79d2330321033c37dd6",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1444,6 +1444,71 @@
             "time": "2017-03-26T20:37:53+00:00"
         },
         {
+            "name": "spatie/laravel-permission",
+            "version": "2.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-permission.git",
+                "reference": "e36ddb9fa6a68e4da4ce93078256e3dab782bd24"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-permission/zipball/e36ddb9fa6a68e4da4ce93078256e3dab782bd24",
+                "reference": "e36ddb9fa6a68e4da4ce93078256e3dab782bd24",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/auth": "~5.4.0|~5.5.0",
+                "illuminate/container": "~5.4.0|~5.5.0",
+                "illuminate/contracts": "~5.4.0|~5.5.0",
+                "illuminate/database": "~5.4.0|~5.5.0",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "monolog/monolog": "^1.22",
+                "orchestra/testbench": "~3.4.2|~3.5.0",
+                "phpunit/phpunit": "^6.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\Permission\\PermissionServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\Permission\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Permission handling for Laravel 5.4 and up",
+            "homepage": "https://github.com/spatie/laravel-permission",
+            "keywords": [
+                "acl",
+                "laravel",
+                "permission",
+                "security",
+                "spatie"
+            ],
+            "time": "2017-08-30T13:27:35+00:00"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "v5.4.8",
             "source": {
@@ -2341,74 +2406,6 @@
                 "environment"
             ],
             "time": "2016-09-01T10:05:43+00:00"
-        },
-        {
-            "name": "zizaco/entrust",
-            "version": "5.2.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Zizaco/entrust.git",
-                "reference": "3623cc052937d9e62543402b50f24065720d44b9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Zizaco/entrust/zipball/3623cc052937d9e62543402b50f24065720d44b9",
-                "reference": "3623cc052937d9e62543402b50f24065720d44b9",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/cache": "~5.0",
-                "illuminate/console": "~5.0",
-                "illuminate/support": "~5.0",
-                "php": ">=5.5.0"
-            },
-            "require-dev": {
-                "illuminate/database": "~5.0",
-                "mockery/mockery": "dev-master",
-                "phpunit/phpunit": "~4.1",
-                "sami/sami": "dev-master"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/commands"
-                ],
-                "psr-4": {
-                    "Zizaco\\Entrust\\": "src/Entrust/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Andrew Elkins",
-                    "homepage": "http://andrewelkins.com"
-                },
-                {
-                    "name": "Zizaco Zizuini",
-                    "email": "zizaco@gmail.com"
-                },
-                {
-                    "name": "Ben Batschelet",
-                    "homepage": "http://github.com/bbatsche"
-                },
-                {
-                    "name": "Michele Angioni",
-                    "email": "michele.angioni@gmail.com"
-                }
-            ],
-            "description": "This package provides a flexible way to add Role-based Permissions to Laravel",
-            "keywords": [
-                "acl",
-                "auth",
-                "illuminate",
-                "laravel",
-                "permission",
-                "roles"
-            ],
-            "time": "2016-12-29T06:25:06+00:00"
         }
     ],
     "packages-dev": [
@@ -3886,9 +3883,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "zizaco/entrust": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
