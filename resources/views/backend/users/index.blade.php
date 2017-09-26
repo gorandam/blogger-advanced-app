@@ -13,7 +13,7 @@
           {{ session('status') }}
         </div>
       @endif
-      
+
       @if ($users->isEmpty())
         <p> There is no user.</p>
       @else
@@ -32,7 +32,7 @@
             <tr>
               <td>{!! $user->id !!}</td>
               <td>
-              <a href="#">{!! $user->name !!} </a>
+              <a href="{{ route('backend.users.edit', $user->id) }}">{!! $user->name !!} </a>
               </td>
               <td>{!! $user->email !!}</td>
               <td>{!! $user->created_at !!}</td>

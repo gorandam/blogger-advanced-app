@@ -70,7 +70,7 @@ Route::post('/ticket/{slug?}/delete', [ // route to DELETE tickets  into the dat
 });
 */
 
-// We create Routes for CommentsController for handling form submssion and save comments to the database
+// We create Routes for COMENTSCONTROLLER for handling form submssion and save comments to the database
 Route::post('/comment',[ //When we send post request to this route Laravel will execute CoommentsControllers newComment acction
   'uses' => 'CommentsController@newComment',
   'as' => 'comment.edit'
@@ -100,10 +100,10 @@ Route::get('users/login', [ // route do DISPLAY login form // we specified named
 Route::post('users/login', [ // route to process login form
   'uses' => 'Auth\LoginController@login',
   'as' => 'auth.login'
-]);// route to process login form
+]);
 
 //Admin area routes
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth']], function () { //Here we have a namespace admin, with this Laravel know where to find classes namespaded as Admin
   Route::get('users', [// Route to list all users
     'uses' => 'UsersController@index',
     'as' => 'backend.users.index'
@@ -119,5 +119,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
   Route::post('roles/create', [ //Route to store roles to the database;
     'uses' => 'RolesController@store',
     'as' => 'backend.roles.store'
+  ]);
+  Route::get('users/{id?}/edit', [ // Route to create view to edit users
+    'uses' => 'UsersController@edit',
+    'as' => 'backend.users.edit'
+  ]);
+  Route::post('users/{id?}/edit', [ // Route to update users
+    'uses' => 'UsersController@update',
+    'as' => 'backend.users.update'
   ]);
 });

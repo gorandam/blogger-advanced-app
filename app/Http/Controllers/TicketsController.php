@@ -36,7 +36,7 @@ class TicketsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TicketFormRequest $request)
+    public function store(TicketFormRequest $request) // Here in the TicketFormRequest we do requset data validation
     {
       $slug = uniqid();//PHP built-in function genereate unique ID based on current miliseconds
       $ticket = new Ticket(array(
@@ -45,7 +45,7 @@ class TicketsController extends Controller
           'slug' => $slug
       ));
 
-      $ticket->save();
+      $ticket->save(); //Here we save our Ticket in the database
 
       //$data = array(
         //'ticket' => $slug,
@@ -55,7 +55,7 @@ class TicketsController extends Controller
         $message->to('goran.dam@mail.com')->subject('There is a new ticket!');
       });
 
-      return redirect()->route('tickets.create')->with('status', 'Your ticket has been created! Its unique id is: '.$slug);// redirect() is global helper for create redirect response instance
+      return redirect()->route('tickets.create')->with('status', 'Your ticket has been created! Its unique id is: '.$slug);// redirect() is global helper for create redirect response instance (object)
 
     }
 
@@ -69,7 +69,7 @@ class TicketsController extends Controller
     {
         $ticket = Ticket::whereSlug($slug)->with('comments')->first();// here we staticly call whereSlug and first methods return instance of our Ticket model and we use with() chain mehtod to eager loading.....
         //$comments = $ticket->comments()->get();// Here we get firt HasMany relationship instance object and call get() fetch method on it to get collectin object of our Comment models - this is alternative way for eager loading
-        return  view('tickets.show', ['ticket' => $ticket]);// here we create view response object and pass as array our instance of Ticket model
+        return view('tickets.show', ['ticket' => $ticket]);// here we create view response object and pass as array our instance of Ticket model
     }
 
     /**
@@ -111,7 +111,7 @@ class TicketsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($slug)
+    public function destroy($slug) //Here we use data appended in the query string of our URL and Laravel will inject it automatically to method
     {
         $ticket = Ticket::whereSlug($slug)->first();
         $ticket->delete();

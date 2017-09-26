@@ -9,7 +9,7 @@ use App\Comment;// Here we insert with namespace our Comment model
 
 class CommentsController extends Controller
   {
-    public function newComment(CommentFormRequest $request) {
+    public function newComment(CommentFormRequest $request) { // Here we also use Request class to validate our request data
       $comment = new Comment(array(
         'post_id' => $request->input('post_id'),
         'content' => $request->input('content')
