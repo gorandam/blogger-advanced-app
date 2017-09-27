@@ -27,19 +27,19 @@ class UsersController extends Controller
 
     }
 
-    public function update($id, UserEditFormRequest $request) {
-      $user = User::whereId($id)->firstOrFail();
-      $user->name = $request->input('name');
+    public function update($id, UserEditFormRequest $request) { //Here we use inject $id from URL query string, use request class to DI request instance in Controller method
+      $user = User::whereId($id)->firstOrFail(); // Here we retrive edit user form database
+      $user->name = $request->input('name'); // Here we insert form fields for edit user in the database
       $user->email = $request->input('email');
       $password = $request->input('password');
       if($user->password != ""){
-        $user->password = Hash::make($password);
+        $user->password = Hash::make($password); //Here we hash new inserted password to store it to the database
       }
 
       $user->save();
-      $user->syncRoles($request->input('role'));
+      $user->syncRoles($request->input('role'));// Here we sync roles and add new aded role to user in database table
 
-      return redirect()->route('backend.users.edit', $user->id)->with('status', 'The user has been updated');
+      return redirect()->route('backend.users.edit', $user->id)->with('status', 'The user has been updated');// Here we return redirect response object
 
 
     }

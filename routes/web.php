@@ -103,7 +103,7 @@ Route::post('users/login', [ // route to process login form
 ]);
 
 //Admin area routes
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth']], function () { //Here we have a namespace admin, with this Laravel know where to find classes namespaded as Admin
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['manager']], function () { //Here we have a namespace admin, with this Laravel know where to find classes namespaded as Admin
   Route::get('users', [// Route to list all users
     'uses' => 'UsersController@index',
     'as' => 'backend.users.index'
