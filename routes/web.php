@@ -128,4 +128,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['man
     'uses' => 'UsersController@update',
     'as' => 'backend.users.update'
   ]);
+  Route::get('/', [ // Route to get admin home page
+    'uses' => 'PagesController@home',
+    'as' => 'backend.home'
+  ]);
 });

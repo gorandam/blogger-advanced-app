@@ -23,6 +23,9 @@
                   <span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
                     @if (Auth::check())
+                      @if (Auth::user()->hasRole('manager'))
+                        <li><a href="{{ route('backend.home') }}">Admin</a><li>
+                      @endif
                     <li><a href="{{ route('auth.logout') }}">Logout</a></li>
                     @else
                     <li><a href="{{ route('auth.register') }}">Register</a></li>
