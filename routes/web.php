@@ -132,4 +132,33 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['man
     'uses' => 'PagesController@home',
     'as' => 'backend.home'
   ]);
+
+  // Posts routes
+
+  Route::get('posts', [ // Route to get all posts
+    'uses' => 'PostsController@index',
+    'as' => 'backend.posts.index'
+  ]);
+
+  Route::get('posts/create', [ // Route to get create form
+    'uses' => 'PostsController@create',
+    'as' => 'backend.posts.create'
+  ]);
+
+  Route::post('posts', [ // Route to store post
+    'uses' => 'PostsController@store',
+    'as' => 'backend.posts.store'
+  ]);
+
+  Route::get('posts/{$id}/edit', [ // Route to get edit form
+    'uses' => 'PostsController@edit',
+    'as' => 'backend.posts.edit'
+  ]);
+  
+  Route::get('posts/{$id}/edit', [ // Route to update post
+    'uses' => 'PostsController@update',
+    'as' => 'backend.posts.update'
+  ]);
+
+
 });

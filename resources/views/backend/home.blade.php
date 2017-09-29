@@ -39,8 +39,8 @@
                         <div class="row-content">
                             <div class="action-secondary"><i class="material-icons">border_color</i></div>
                             <h4 class="list-group-item-heading">Manage Posts</h4>
-                            <a href="/admin/posts" class="btn btn-default btn-raised">All Posts</a>
-                            <a href="/admin/posts/create" class="btn btn-primary btn-raised">Create A Post</a>
+                            <a href="{{ route('backend.posts.index') }}" class="btn btn-default btn-raised">All Posts</a>
+                            <a href="{{ route('backend.posts.create') }}" class="btn btn-primary btn-raised">Create A Post</a>
                         </div>
                     </div>
                     <div class="list-group-separator"></div>
