@@ -134,7 +134,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['man
   ]);
 
   // Posts routes
-
   Route::get('posts', [ // Route to get all posts
     'uses' => 'PostsController@index',
     'as' => 'backend.posts.index'
@@ -154,11 +153,28 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['man
     'uses' => 'PostsController@edit',
     'as' => 'backend.posts.edit'
   ]);
-  
+
   Route::get('posts/{$id}/edit', [ // Route to update post
     'uses' => 'PostsController@update',
     'as' => 'backend.posts.update'
   ]);
+
+//Categories Routes
+  Route::get('categories', [ // Route to get all categories from the database
+    'uses' => 'CategoriesController@index',
+    'as' => 'backend.categories.index'
+  ]);
+
+  Route::get('categories/create', [ // Route to get new categories form
+    'uses' => 'CategoriesController@create',
+    'as' => 'backend.categories.create'
+  ]);
+
+  Route::post('categories/create', [ // Route to post categories form
+    'uses' => 'CategoriesController@store',
+    'as' => 'backend.categories.store'
+  ]);
+
 
 
 });
