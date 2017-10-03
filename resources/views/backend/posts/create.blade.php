@@ -33,7 +33,21 @@
                             <textarea class="form-control" rows="3" id="content" name="content"></textarea>
                         </div>
                     </div>
-                  
+
+                    <div class="form-group">
+                        <label for="categories" class="col-lg-2 control-label">Categories</label>
+
+                        <div class="col-lg-10">
+                            <select class="form-control" id="category" name="categories[]" multiple>
+                                @foreach($categories as $category)
+                                    <option value="{!! $category->id !!}">
+                                        {!! $category->name !!}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <div class="col-lg-10 col-lg-offset-2">
                             <button type="reset" class="btn btn-default">Cancel</button>

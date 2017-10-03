@@ -108,6 +108,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['man
     'uses' => 'UsersController@index',
     'as' => 'backend.users.index'
   ]);
+
+  //Roles routes
   Route::get('roles', [ //Route to list all roles
     'uses' => 'RolesController@index',
     'as' => 'backend.roles.index'
@@ -120,6 +122,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['man
     'uses' => 'RolesController@store',
     'as' => 'backend.roles.store'
   ]);
+
+  //Users route
   Route::get('users/{id?}/edit', [ // Route to create view to edit users
     'uses' => 'UsersController@edit',
     'as' => 'backend.users.edit'
@@ -128,6 +132,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['man
     'uses' => 'UsersController@update',
     'as' => 'backend.users.update'
   ]);
+
+  //Pages route
   Route::get('/', [ // Route to get admin home page
     'uses' => 'PagesController@home',
     'as' => 'backend.home'
@@ -144,7 +150,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['man
     'as' => 'backend.posts.create'
   ]);
 
-  Route::post('posts', [ // Route to store post
+  Route::post('posts/create', [ // Route to store post
     'uses' => 'PostsController@store',
     'as' => 'backend.posts.store'
   ]);
@@ -154,7 +160,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['man
     'as' => 'backend.posts.edit'
   ]);
 
-  Route::get('posts/{$id}/edit', [ // Route to update post
+  Route::post('posts/{$id}/edit', [ // Route to update post
     'uses' => 'PostsController@update',
     'as' => 'backend.posts.update'
   ]);
