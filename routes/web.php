@@ -155,12 +155,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['man
     'as' => 'backend.posts.store'
   ]);
 
-  Route::get('posts/{$id}/edit', [ // Route to get edit form
+  Route::get('posts/{post?}/edit', [ // Route to get edit form
     'uses' => 'PostsController@edit',
     'as' => 'backend.posts.edit'
   ]);
 
-  Route::post('posts/{$id}/edit', [ // Route to update post
+  Route::post('posts/{post?}/edit', [ // Route to update post
     'uses' => 'PostsController@update',
     'as' => 'backend.posts.update'
   ]);

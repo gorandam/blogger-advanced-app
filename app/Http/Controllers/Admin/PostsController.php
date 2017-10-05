@@ -7,7 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Category;
 use App\Post;
 use Illuminate\Support\Str;
-use App\Http\Requests\PostFromRequest;
+use App\Http\Requests\PostFormRequest;
+use App\Http\Requests\PostEditFormRequest;
 use Illuminate\Support\Facades\Auth;
 
 class PostsController extends Controller
@@ -19,7 +20,8 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        return view('backend.posts.index', ['posts' => $posts]);
     }
 
     /**
@@ -39,7 +41,7 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PostFromRequest $request)
+    public function store(PostFormRequest $request)
     {
       $user_id = Auth::user()->id;
       $post = Post::create([
@@ -72,9 +74,13 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        $categories = Category::all();
+        $selectedCategories = $post->categories->pluck('id')->toArray();
+
+        return view('backend.posts.edit', ['post' => $post, 'categories' => $categories, 'selectedCategories' => $selectedCategories]);
+
     }
 
     /**
@@ -84,9 +90,20 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostEditFormRequest $request, Post $post)
     {
-        //
+        //We update it and save it
+        $post->title = $request->input('title');
+        $post->content = $request->input('content');
+        $post->slug = Str::slug($request->input('title'), '-');
+        $post->save();
+
+        //We sync exiting seletected posts with new ones in our database pivot TokyoTyrantTable
+        $post->categories()->sync($request->input('categories'));
+
+        // We must create response
+
+        return redirect()->route('backend.posts.edit', $post->id)->with('status', 'The post has been updated!');
     }
 
     /**
