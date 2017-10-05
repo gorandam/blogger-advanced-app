@@ -15,12 +15,18 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
               <li class="active"><a href="{{ route('home') }}">Home</a></li>
+              <li><a href="{{ route('blog.index') }}">Blog</a></li>
               <li><a href="{{ route('about') }}">About</a></li>
               <li><a href="{{ route('tickets.create') }}">Contact</a></li>
               <li><a href="{{ route('tickets.index') }}">Tickets</a></li>
               <li class="dropdown">
+                @if(!Auth::check())
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Member
                   <span class="caret"></span></a>
+                @else
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }}
+                  <span class="caret"></span></a>
+                @endif
                   <ul class="dropdown-menu" role="menu">
                     @if (Auth::check())
                       @if (Auth::user()->hasRole('manager'))

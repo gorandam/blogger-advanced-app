@@ -102,6 +102,16 @@ Route::post('users/login', [ // route to process login form
   'as' => 'auth.login'
 ]);
 
+//Blog post display routes
+Route::get('blog', [ // route to display all blog posts
+  'uses' => 'BlogController@index',
+  'as' => 'blog.index'
+]);
+Route::get('blog/{slug?}', [ // route to display all blog posts
+  'uses' => 'BlogController@show',
+  'as' => 'blog.show'
+]);
+
 //Admin area routes
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['manager']], function () { //Here we have a namespace admin, with this Laravel know where to find classes namespaded as Admin
   Route::get('users', [// Route to list all users
@@ -180,7 +190,4 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['man
     'uses' => 'CategoriesController@store',
     'as' => 'backend.categories.store'
   ]);
-
-
-
 });
