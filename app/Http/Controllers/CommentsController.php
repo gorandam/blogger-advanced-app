@@ -12,7 +12,8 @@ class CommentsController extends Controller
     public function newComment(CommentFormRequest $request) { // Here we also use Request class to validate our request data
       $comment = new Comment(array(
         'post_id' => $request->input('post_id'),
-        'content' => $request->input('content')
+        'content' => $request->input('content'),
+        'post_type' => $request->input('post_type')
       ));
 
       $comment->save();

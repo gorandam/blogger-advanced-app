@@ -1,35 +1,25 @@
 @extends('master')
-@section('title', 'View a ticket')
+@section('title', 'View a post')
 @section('content')
 
     <div class="container col-md-8 col-md-offset-2">
+        <div class="well well bs-component">
+            <div class="content">
+                <h2 class="header">{!! $post->title !!}</h2>
+                <p> {!! $post->content !!} </p>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        @foreach($comments as $comment)
             <div class="well well bs-component">
                 <div class="content">
-                    <h2 class="header">{!! $ticket->title !!}</h2>
-                    <p> <strong>Status</strong>: {!! $ticket->status ? 'Pending' : 'Answered' !!}</p>
-                    <p> {!! $ticket->content !!} </p>
+                    {!! $comment->content !!}
                 </div>
-                <a href="{!! route('tickets.edit', $ticket->slug) !!}" class="btn btn-info">Edit</a>
-
-                <form method="post" action="{!! route('ticket.delete', $ticket->slug) !!}" class="pull-left">
-                    <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                      <div>
-                          <button type="submit" class="btn btn-warning">Delete</button>
-                      </div>
-                </form>
-
-                <div class="clearfix"></div>
-          </div>
-
-          @foreach($ticket->comments as $comment)
-            <div class="well well bs-component">
-              <div class="content">
-                {!! $comment->content !!}
-              </div>
             </div>
-          @endforeach
+        @endforeach
 
-          <div class="well well bs-component">
+        <div class="well well bs-component">
             <form class="form-horizontal" method="post" action="{{ route('comment.edit') }}">
 
                 @foreach($errors->all() as $error)
@@ -43,11 +33,11 @@
                 @endif
 
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-                <input type="hidden" name="post_id" value="{!! $ticket->id !!}">
-                <input type="hidden" name="post_type" value="App\Ticket">
+                <input type="hidden" name="post_id" value="{!! $post->id !!}">
+                <input type="hidden" name="post_type" value="App\Post">
 
                 <fieldset>
-                    <legend>Reply</legend>
+                    <legend>Comment</legend>
                     <div class="form-group">
                         <div class="col-lg-12">
                             <textarea class="form-control" rows="3" id="content" name="content"></textarea>

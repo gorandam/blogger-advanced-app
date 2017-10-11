@@ -47,7 +47,7 @@ class PostsController extends Controller
       $post = Post::create([
         'title' => $request->input('title'),
         'content' => $request->input('content'),
-        'slug' => Str::slug($request->input('title'), '-'),
+        'slug' => Str::slug($request->input('title'), '-'), // Here we creat the slug for given post
         'user_id' => $user_id
       ]);
 
