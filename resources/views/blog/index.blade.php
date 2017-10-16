@@ -22,7 +22,6 @@
                 </div>
             @endforeach
         @endif
-        @include('shared.sidebar')
     </div>
 
 @endsection

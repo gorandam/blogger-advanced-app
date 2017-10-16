@@ -12,19 +12,15 @@ class BlogController extends Controller
     public function index()
     {
 
-      //$posts = Post::all();
-        $posts = Post::latest() // Here is our refactoring query scope code for getting posts from selected month/ Our scope code is in the Post.php
-          ->filter(request(['month', 'year']))
-          ->get();
+      $posts = Post::all();
+      //  $posts = Post::latest() // Here is our refactoring query scope code for getting posts from selected month/ Our scope code is in the Post.php
+        //  ->filter(request(['month', 'year']))
+        //  ->get();
 
-        $archives = Post::archives();
-      //$archives = Post::selectRaw('year(created_at) year, monthname(created_at) month, count(*) published')// this is our complex query to get all our posts by year and month by descending order
-          //->groupBy('year', 'month')
-        //->orderByRaw('min(created_at)desc')
-          //->get();
+        //$archives = Post::archives();
 
-
-      return view('blog.index', ['posts' => $posts, 'archives' => $archives]);   //We create response and send view data/ Here we must add in array 'archives' => archives if we want to show our posts by monts
+      return view('blog.index', ['posts' => $posts]);   //We create response and send view data/ Here we must add in array 'archives' => archives if we want to show our posts by monts
+                                                        //Here we also in our view() add 'archives' => $archives when we implement our shared.sedebar and our view composers logic..
     }
 
 
