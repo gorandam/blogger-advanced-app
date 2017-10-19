@@ -5,14 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use Carbon\Carbon;
+use App\Repositories\Posts;
 
 
 class BlogController extends Controller
 {
-    public function index()
+    public function index(Posts $posts)
     {
 
-      $posts = Post::all();
+
+      $posts = $posts->all();
+      //$posts = Post::all();
       //  $posts = Post::latest() // Here is our refactoring query scope code for getting posts from selected month/ Our scope code is in the Post.php
         //  ->filter(request(['month', 'year']))
         //  ->get();

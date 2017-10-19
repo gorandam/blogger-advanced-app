@@ -11,6 +11,8 @@
 |
 */
 
+//dd(app('App\Billing\Stripe'));// Here we die and dump it to the browser page
+
 Route::get('/', [
   'uses' => 'PagesControler@home',
   'as' => 'home'
