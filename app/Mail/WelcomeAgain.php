@@ -8,10 +8,9 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\User;
 
-class Welcome extends Mailable
+class WelcomeAgain extends Mailable
 {
     use Queueable, SerializesModels;
-
 
     public $user;
 
@@ -20,7 +19,7 @@ class Welcome extends Mailable
      *
      * @return void
      */
-    public function __construct(User $user) // Here we type hint or dinamicly bind User instace to say that argument must be instance of user class
+    public function __construct(User $user)
     {
         $this->user = $user;
     }
@@ -32,6 +31,6 @@ class Welcome extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.hello'); // Here we place email which we want to create - this is path to over views
+        return $this->markdown('emails.hello-again')->with('name', $this->user->name);
     }
 }
