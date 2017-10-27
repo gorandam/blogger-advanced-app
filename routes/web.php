@@ -73,7 +73,7 @@ Route::post('/ticket/{slug?}/delete', [ // route to DELETE tickets  into the dat
 */
 
 // We create Routes for COMENTSCONTROLLER for handling form submssion and save comments to the database
-Route::post('/comment',[ //When we send post request to this route Laravel will execute CoommentsControllers newComment acction
+Route::post('/comment',[ //When we send post request to this route Laravel will execute CoommentsControllers  now $form->persist()
   'uses' => 'CommentsController@newComment',
   'as' => 'comment.edit'
 ]);

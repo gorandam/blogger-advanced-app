@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Comment;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CommentFormRequest extends FormRequest
@@ -26,5 +27,14 @@ class CommentFormRequest extends FormRequest
         return [
             'content' => 'required|min:3',
         ];
+    }
+
+    public function persist()
+    {
+        $comment = Comment::create(
+            $this->only(['post_id', 'content', 'post_type'])
+
+        ); // this only is = request(), when we call request we use i background  $request->only([])
+
     }
 }

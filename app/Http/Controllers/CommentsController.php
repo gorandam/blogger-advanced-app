@@ -9,14 +9,9 @@ use App\Comment;// Here we insert with namespace our Comment model
 
 class CommentsController extends Controller
   {
-    public function newComment(CommentFormRequest $request) { // Here we also use Request class to validate our request data
-      $comment = new Comment(array(
-        'post_id' => $request->input('post_id'),
-        'content' => $request->input('content'),
-        'post_type' => $request->input('post_type')
-      ));
+    public function newComment(CommentFormRequest $form) { // Here we also use Request class to validate our request data
 
-      $comment->save();
+      $form->persist(); //Here we call method in what we define our logic in our CommentFormRequest class
 
       return redirect()->back()->with('status', 'Your comment has been created!');// Here we use global redirect() witch return redirect response object with previous location with global back() helper and flashing data to season with with() function
     }

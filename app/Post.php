@@ -19,7 +19,7 @@ class Post extends Model
       return $this->morphMany('App\Comment', 'post'); //Here we define that our Post has many comments, this will return all post comments
     }
 
-    public function scopeFilter($query, $filters)// Here is our scopeQuery function where we refactor our code 
+    public function scopeFilter($query, $filters)// Here is our scopeQuery function where we refactor our code
     {
       if ($month = $filters['month']) {
        $query->whereMonth('created_at', Carbon::parse($month)->month);
