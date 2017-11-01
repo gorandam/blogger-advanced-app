@@ -192,4 +192,9 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['man
     'uses' => 'CategoriesController@store',
     'as' => 'backend.categories.store'
   ]);
+
+  Route::get('categories/{category?}', [ // Route to show all category posts
+    'uses' => 'CategoriesController@show',
+    'as' => 'backend.postscategories.index'
+  ]);
 });

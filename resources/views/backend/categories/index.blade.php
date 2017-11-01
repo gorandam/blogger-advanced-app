@@ -19,7 +19,7 @@
                     <tbody>
                     @foreach($categories as $category)
                         <tr>
-                            <td>{!! $category->name !!}</td>
+                            <td><a href="{{ route('backend.postscategories.index', $category->name) }}"> {!! $category->name !!}</a></td>
                         </tr>
                     @endforeach
                     </tbody>

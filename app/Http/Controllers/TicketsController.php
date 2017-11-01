@@ -55,6 +55,8 @@ class TicketsController extends Controller
         $message->to('goran.dam@mail.com')->subject('There is a new ticket!');
       });
 
+
+
       return redirect()->route('tickets.create')->with('status', 'Your ticket has been created! Its unique id is: '.$slug);// redirect() is global helper for create redirect response instance (object)
 
     }

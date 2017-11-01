@@ -2,8 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
@@ -38,5 +38,10 @@ class Post extends Model
           ->groupBy('year', 'month')
           ->orderByRaw('min(created_at)desc')
           ->get();
+    }
+
+    protected function tags()
+    {
+      return $this->belongsToMany(Tag::class);
     }
 }
