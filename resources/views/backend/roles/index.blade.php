@@ -24,7 +24,9 @@
                     <tbody>
                     @foreach($roles as $role)
                         <tr>
-                            <td>{!! $role->name !!}</td>
+                            <td>
+                            <a href="{{ route('backend.rolesusers.show', $role->id) }}"> {!! $role->name !!}</a>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

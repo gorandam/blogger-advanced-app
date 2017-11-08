@@ -134,6 +134,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['man
     'uses' => 'RolesController@store',
     'as' => 'backend.roles.store'
   ]);
+  Route::get('roles/{role?}', [ //Route to store roles to the database;
+    'uses' => 'RolesController@show',
+    'as' => 'backend.rolesusers.show'
+  ]);
 
   //Users route
   Route::get('users/{id?}/edit', [ // Route to create view to edit users
